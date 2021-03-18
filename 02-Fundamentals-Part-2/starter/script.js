@@ -1,168 +1,4 @@
-"use strict"; //aktiviert Strict mode zeigt uns manche Fehler in developer console
-/*
-let hasDriversLicense = false;
-const passTest = true;
-
-if (passTest) hasDriversLicense = true; //absichtlicher fehler um strict mode zu testen --> zeigt an das variable nicht def ist
-if (hasDriversLicense) console.log("I can drive");
-
-// const interface = "Audio"; //führt zu Error das interface reserved ist im strict mode
-// const pricate = 534;
-
-
-// function = reusable code blocks
-
-function logger() { //inside {} function body
-    console.log("My name is Peter");
-}
-//invoking/running/calling the function
-logger();
-logger();
-logger();
-//functions können daten empfangen und zurückgeben (receive return)
-function fruitProcessor(apples, oranges) {  // in () parameter denen Werte zugewiesen werden können
-    // console.log(apples, oranges);
-    const juice = `Juice with ${apples} apples and ${oranges} oranges.`;
-    return juice;  //ergebnis der funktion um später verwendet zu werden
-}
-
-// Wenn in einer Funktion eine return Anweisung aufgerufen wird, wird der Aufruf der Funktion gestoppt. Wenn ein Rückgabewert spezifiziert ist, wird dieser zu der aufrufenden Funktion zurückgegeben. Wenn kein Rückgabewert angegeben wird, wird stattdessen undefined zurückgegeben.
-const appleJuice = fruitProcessor(5, 0); // die zahlen sind arguments
-console.log(appleJuice);
-
-const appleOrangeJuice = fruitProcessor(2, 4);
-console.log(appleOrangeJuice);
-
-//functions sind eigentlich nur "values"
-
-//function declaration können aufgerufen werden vor eigentlicher definition ((hoisting))
-
-function calcAge1(birthYear) {
-    // const age = 2037 - birthYear;
-    return 2037 - birthYear; //einzelne ausgaben wie hier können direkt returned werden OHNE einer Variable zugeordnet zu werden (würde zu Fehler führen)
-}
-
-
-const age1 = calcAge1(1980);
-console.log(age1);
-//function expression
-const calcAge2 = function (birthYear) {  //function wird ohne name erstellt, aber die funktion als variable gespeichert (Anonymus Function)
-    return 2037 - birthYear;
-} //expresions erzeugen value
-const age2 = calcAge2(1980);
-
-console.log(age1, age2);
-
-// eigentlich egal ob mal expressions oder declarations verwendet, lehrer verwendet expressions im alles sauberer zu halten
-
-//Arrow function (immer noch expression)
-const calcAge3 = birthYear => 2037 - birthYear; //return passiert implicit wenn es ein einzeiler Code ist
-const age3 = calcAge3(1980);
-console.log(age3);
-
-const yearsUntilRetirement = (birthYear, firstName) => {
-    const age = 2037 - birthYear;
-    const retirement = 65 - age
-    // return retirement; //da mehrzeilig braucht es return hier
-    return `${firstName} retires in ${retirement} Years`;
-}
-
-console.log(yearsUntilRetirement(1980, "Peter"));
-console.log(yearsUntilRetirement(1991, "Jonas"));
-
-
-
-
-function cutFruitPieces(fruit) {
-    return fruit * 4;
-}
-
-function fruitProcessor(apples, oranges) {
-    const applePieces = cutFruitPieces(apples);
-    const orangePieces = cutFruitPieces(oranges)
-
-    const juice = `Juice with ${applePieces} pieces of apple and ${orangePieces} pieces of orange.`;
-    return juice;
-}
-
-console.log(fruitProcessor(2, 3));
-
-const calcAge = function (birthYear) {  //birthYear unterschiedlicher Parameter in beiden functionen
-    return 2037 - birthYear;
-}
-
-const yearsUntilRetirement = function (birthYear, firstName) {
-    const age = calcAge(birthYear);
-    const retirement = 65 - age;
-
-    if (retirement > 0) {  //Zeile rauf runterverschieben Alt + pfeilrauf runter
-        console.log(`${firstName} retires in ${retirement} Years`); //nach return wird ignoriert, da return sofort die Funktion verlässt
-        return retirement;
-    } else {
-        console.log(`${firstName} has already retired`);
-        return -1;
-    }
-
-}
-
-console.log(yearsUntilRetirement(1980, "Peter"));
-console.log(yearsUntilRetirement(1950, "Jonas"));
-*/
-///////////////////////////////////
-//Coding Challenge #1
-
-/*
-Back to the two gymnastics teams, the Dolphins and the Koalas! There is a new gymnastics discipline, which works differently. Each team competes 3 times, and then the average of the 3 scores is calculated (so one average score per team). A team only wins if it has at least double the average score of the other team. Otherwise, no team wins!
-
-Your tasks:
-1. Create an arrow function 'calcAverage' to calculate the average of 3 scores
-2. Use the function to calculate the average for both teams
-3. Create a function 'checkWinner' that takes the average score of each team as parameters ('avgDolphins' and 'avgKoalas'), and then logs the winner to the console, together with the victory points, according to the rule above. Example: "Koalas win (30 vs. 13)"
-4. Use the 'checkWinner' function to determine the winner for both Data 1 and Data 2
-5. Ignore draws this time
-
-§ Data 1: Dolphins score 44, 23 and 71. Koalas score 65, 54 and 49
-§ Data 2: Dolphins score 85, 54 and 41. Koalas score 23, 34 and 27
-Hints:
-§ To calculate average of 3 values, add them all together and divide by 3
-§ To check if number A is at least double number B, check for A >= 2 * B.
-Apply this to the team's average scores 😉
-GOOD LUCK 😀
-*/
-/*
-// const calcAverage = (a, b ,c) => (a+b+c)/3;  //Lösung vom Lehrer
-const calcAverage = (score1, score2, score3) => {
-    const totalScore = (score1 + score2 + score3);
-    const calcAverage = totalScore / 3;
-    return calcAverage;
-}
-
-// console.log(`Average Score Dolphins is ${calcAverage(44, 23, 71)}
-// Average Score Koalas is ${calcAverage(65, 54, 49)}`);
-
-const checkWinner = function (avgDolphins, avgKoalas) {
-
-
-    if (avgDolphins >= avgKoalas * 2) {
-        console.log(`Dolphins win! ( ${avgDolphins} vs ${avgKoalas})`);
-        return;
-    } else if (avgKoalas >= avgDolphins * 2) {
-        console.log(`Koalas win!(${avgKoalas} vs ${avgDolphins})`);
-        return;
-    } else {
-        console.log(`No winner!( Dolphins ${avgDolphins} vs Koalas ${avgKoalas}) `);
-        return;
-    }
-}
-//Data 1
-let avgDolphins = calcAverage(44, 23, 71);
-let avgKoalas = calcAverage(65, 54, 49);
-checkWinner(avgDolphins, avgKoalas); //function ist egal welche nummern eigegeben werden
-//Data2
-avgDolphins = calcAverage(85, 54, 41);
-avgKoalas = calcAverage(23, 34, 27);
-checkWinner(avgDolphins, avgKoalas); //function ist egal welche nummern eigegeben werden
-*//*
+"use strict" /*
 //Arrays (Data Structure)
 const friend1 = "Michael";
 const friend2 = "Steven";
@@ -537,13 +373,7 @@ while (dice !== 6) {
     dice = Math.trunc(Math.random() * 6) + 1;
     if (dice === 6) console.log(`DICE ROLL ${dice} Loop complete`);
 }
-*/
-
-/////////////////////////////////
-//Coding Challenge #4
-
-
-/*
+*/ /*
 Let's improve Steven's tip calculator even more, this time using loops! Your tasks:
 
 1. Create an array 'bills' containing all 10 test bill values
@@ -598,4 +428,168 @@ const calcAverage = function (arr) {
 console.log(`The avaerge is for totals ${calcAverage(totals)}`);
 console.log(`The avaerge is for tips ${calcAverage(tips)}`);
 
+*/; //aktiviert Strict mode zeigt uns manche Fehler in developer console ///////////////////////////////// //Coding Challenge #4
+/*
+let hasDriversLicense = false;
+const passTest = true;
+
+if (passTest) hasDriversLicense = true; //absichtlicher fehler um strict mode zu testen --> zeigt an das variable nicht def ist
+if (hasDriversLicense) console.log("I can drive");
+
+// const interface = "Audio"; //führt zu Error das interface reserved ist im strict mode
+// const pricate = 534;
+
+
+// function = reusable code blocks
+
+function logger() { //inside {} function body
+    console.log("My name is Peter");
+}
+//invoking/running/calling the function
+logger();
+logger();
+logger();
+//functions können daten empfangen und zurückgeben (receive return)
+function fruitProcessor(apples, oranges) {  // in () parameter denen Werte zugewiesen werden können
+    // console.log(apples, oranges);
+    const juice = `Juice with ${apples} apples and ${oranges} oranges.`;
+    return juice;  //ergebnis der funktion um später verwendet zu werden
+}
+
+// Wenn in einer Funktion eine return Anweisung aufgerufen wird, wird der Aufruf der Funktion gestoppt. Wenn ein Rückgabewert spezifiziert ist, wird dieser zu der aufrufenden Funktion zurückgegeben. Wenn kein Rückgabewert angegeben wird, wird stattdessen undefined zurückgegeben.
+const appleJuice = fruitProcessor(5, 0); // die zahlen sind arguments
+console.log(appleJuice);
+
+const appleOrangeJuice = fruitProcessor(2, 4);
+console.log(appleOrangeJuice);
+
+//functions sind eigentlich nur "values"
+
+//function declaration können aufgerufen werden vor eigentlicher definition ((hoisting))
+
+function calcAge1(birthYear) {
+    // const age = 2037 - birthYear;
+    return 2037 - birthYear; //einzelne ausgaben wie hier können direkt returned werden OHNE einer Variable zugeordnet zu werden (würde zu Fehler führen)
+}
+
+
+const age1 = calcAge1(1980);
+console.log(age1);
+//function expression
+const calcAge2 = function (birthYear) {  //function wird ohne name erstellt, aber die funktion als variable gespeichert (Anonymus Function)
+    return 2037 - birthYear;
+} //expresions erzeugen value
+const age2 = calcAge2(1980);
+
+console.log(age1, age2);
+
+// eigentlich egal ob mal expressions oder declarations verwendet, lehrer verwendet expressions im alles sauberer zu halten
+
+//Arrow function (immer noch expression)
+const calcAge3 = birthYear => 2037 - birthYear; //return passiert implicit wenn es ein einzeiler Code ist
+const age3 = calcAge3(1980);
+console.log(age3);
+
+const yearsUntilRetirement = (birthYear, firstName) => {
+    const age = 2037 - birthYear;
+    const retirement = 65 - age
+    // return retirement; //da mehrzeilig braucht es return hier
+    return `${firstName} retires in ${retirement} Years`;
+}
+
+console.log(yearsUntilRetirement(1980, "Peter"));
+console.log(yearsUntilRetirement(1991, "Jonas"));
+
+
+
+
+function cutFruitPieces(fruit) {
+    return fruit * 4;
+}
+
+function fruitProcessor(apples, oranges) {
+    const applePieces = cutFruitPieces(apples);
+    const orangePieces = cutFruitPieces(oranges)
+
+    const juice = `Juice with ${applePieces} pieces of apple and ${orangePieces} pieces of orange.`;
+    return juice;
+}
+
+console.log(fruitProcessor(2, 3));
+
+const calcAge = function (birthYear) {  //birthYear unterschiedlicher Parameter in beiden functionen
+    return 2037 - birthYear;
+}
+
+const yearsUntilRetirement = function (birthYear, firstName) {
+    const age = calcAge(birthYear);
+    const retirement = 65 - age;
+
+    if (retirement > 0) {  //Zeile rauf runterverschieben Alt + pfeilrauf runter
+        console.log(`${firstName} retires in ${retirement} Years`); //nach return wird ignoriert, da return sofort die Funktion verlässt
+        return retirement;
+    } else {
+        console.log(`${firstName} has already retired`);
+        return -1;
+    }
+
+}
+
+console.log(yearsUntilRetirement(1980, "Peter"));
+console.log(yearsUntilRetirement(1950, "Jonas"));
+*/
+///////////////////////////////////
+//Coding Challenge #1
+
+/*
+Back to the two gymnastics teams, the Dolphins and the Koalas! There is a new gymnastics discipline, which works differently. Each team competes 3 times, and then the average of the 3 scores is calculated (so one average score per team). A team only wins if it has at least double the average score of the other team. Otherwise, no team wins!
+
+Your tasks:
+1. Create an arrow function 'calcAverage' to calculate the average of 3 scores
+2. Use the function to calculate the average for both teams
+3. Create a function 'checkWinner' that takes the average score of each team as parameters ('avgDolphins' and 'avgKoalas'), and then logs the winner to the console, together with the victory points, according to the rule above. Example: "Koalas win (30 vs. 13)"
+4. Use the 'checkWinner' function to determine the winner for both Data 1 and Data 2
+5. Ignore draws this time
+
+§ Data 1: Dolphins score 44, 23 and 71. Koalas score 65, 54 and 49
+§ Data 2: Dolphins score 85, 54 and 41. Koalas score 23, 34 and 27
+Hints:
+§ To calculate average of 3 values, add them all together and divide by 3
+§ To check if number A is at least double number B, check for A >= 2 * B.
+Apply this to the team's average scores 😉
+GOOD LUCK 😀
+*/
+/*
+// const calcAverage = (a, b ,c) => (a+b+c)/3;  //Lösung vom Lehrer
+const calcAverage = (score1, score2, score3) => {
+    const totalScore = (score1 + score2 + score3);
+    const calcAverage = totalScore / 3;
+    return calcAverage;
+}
+
+// console.log(`Average Score Dolphins is ${calcAverage(44, 23, 71)}
+// Average Score Koalas is ${calcAverage(65, 54, 49)}`);
+
+const checkWinner = function (avgDolphins, avgKoalas) {
+
+
+    if (avgDolphins >= avgKoalas * 2) {
+        console.log(`Dolphins win! ( ${avgDolphins} vs ${avgKoalas})`);
+        return;
+    } else if (avgKoalas >= avgDolphins * 2) {
+        console.log(`Koalas win!(${avgKoalas} vs ${avgDolphins})`);
+        return;
+    } else {
+        console.log(`No winner!( Dolphins ${avgDolphins} vs Koalas ${avgKoalas}) `);
+        return;
+    }
+}
+//Data 1
+let avgDolphins = calcAverage(44, 23, 71);
+let avgKoalas = calcAverage(65, 54, 49);
+checkWinner(avgDolphins, avgKoalas); //function ist egal welche nummern eigegeben werden
+//Data2
+avgDolphins = calcAverage(85, 54, 41);
+avgKoalas = calcAverage(23, 34, 27);
+checkWinner(avgDolphins, avgKoalas); //function ist egal welche nummern eigegeben werden
 */
